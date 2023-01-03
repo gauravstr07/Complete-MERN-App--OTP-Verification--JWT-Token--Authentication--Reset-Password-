@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 /** import all controllers */
 const appController = require("../controllers/appControllers");
+const auth = require("../middleware/auth");
 
 /** POST Methods */
 router.route("/register").post(appController.register);
@@ -18,7 +19,7 @@ router.route("/verifyOTP").get(appController.verifyOTP);
 router.route("/createResetSession").get(appController.createResetSession);
 
 /** PUT Methods */
-router.route("/updateuser").put(appController.updateUser);
+router.route("/updateuser").put(auth.Auth, appController.updateUser);
 router.route("/resetPassword").put(appController.resetPassword);
 
 /** DELETE Methods */
